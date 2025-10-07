@@ -6,7 +6,7 @@ public class Conta {
     private String agencia;
     private Cliente titular;
     private double saldo;
-    private List<Object> transacoes; // Lista Genérica <Object> para armazenar transações (ex.: String ou tipo Transacao)
+    private List<Object> transacoes; // Lista Genérica <Object> para armazenar transações
 
     public Conta(String numeroConta, String agencia, Cliente titular) {
         this.numeroConta = numeroConta;
@@ -32,7 +32,15 @@ public class Conta {
         return saldo;
     }
 
-    // Adicionar métodos para depósito, saque, transferência e relatório de transações aqui
+    // Método para depósito
+    public boolean depositar(double valor) {
+        if (valor > 0) {
+            saldo += valor;
+            transacoes.add("Depósito: +" + valor);
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public String toString() {
