@@ -32,6 +32,8 @@ public class Conta {
         return saldo;
     }
 
+    // Método para saque
+
     // Método para depósito
     public boolean depositar(double valor) {
         if (valor > 0) {
@@ -40,6 +42,16 @@ public class Conta {
             return true;
         }
         return false;
+    }
+
+    // Método para transferência
+
+    // Método para exibir extrato
+    public void exibirExtrato() {
+        System.out.println("Extrato da Conta " + numeroConta + ":");
+        for (Object transacao : transacoes) {
+            System.out.println(transacao);
+        }
     }
 
     @Override
