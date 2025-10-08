@@ -8,6 +8,24 @@ public class Banco {
     }
 
     public void adicionarConta(Conta conta) {
+        if (conta == null) {
+            System.out.println("Conta inválida.");
+            return;
+        }
+
+        for (Conta c : contas) {
+            // Verifica se número de conta e agência são iguais
+            if (c.getNumeroConta().equals(conta.getNumeroConta()) && c.getAgencia().equals(conta.getAgencia())) {
+                System.out.println("Já existe uma conta com este número e agência.");
+                return;
+            }
+
+            // Verifica se CPF do titular é igual
+            if (c.getTitular().getCpf().equals(conta.getTitular().getCpf())) {
+                System.out.println("Já existe uma conta com este CPF.");
+                return;
+            }
+        }
         contas.add(conta);
     }
 
