@@ -53,6 +53,14 @@ public class Conta {
     }
 
     // Método para transferência
+    public boolean transferir(Conta destino, double valor) {
+        if (this.saque(valor)) {
+            destino.depositar(valor);
+            transacoes.add("Transferência para " + destino.getNumeroConta() + ": -" + valor);
+            return true;
+        }
+        return false;
+    }
 
     // Método para exibir extrato
     public void exibirExtrato() {
