@@ -59,4 +59,26 @@ public class Banco {
         }
         return null; // Retorna null se não encontrar a conta
     }
+
+    public ArrayList<Conta> getContas() {
+        return contas;
+    }
+
+    public Conta getClientePorCPF(String cpf) {
+        for (Conta conta : contas) {
+            if (conta.getTitular().getCpf().equals(cpf)) {
+                return conta;
+            }
+        }
+        return null; // Retorna null se não encontrar o cliente
+    }
+
+    public Conta getClientePorNome(String nome) {
+        for (Conta conta : contas) {
+            if (conta.getTitular().getNome().equals(nome)) {
+                return conta;
+            }
+        }
+        return null; // Retorna null se não encontrar o cliente
+    }
 }
