@@ -111,6 +111,7 @@ public class Menu {
 		System.out.println("1 - Saque");
 		System.out.println("2 - Depósito");
 		System.out.println("3 - Transferência");
+		System.out.println("4 - Extrato");
 
 		try {
 			String op = scanner.nextLine();
