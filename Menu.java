@@ -139,6 +139,50 @@ public class Menu {
 		}
 	}
 
+	private void buscaClientePorCPF(Banco banco) {
+		System.out.println("Digite o CPF do cliente:");
+		String cpfBusca = scanner.nextLine();
+		Conta contaCliente = banco.getContaPorCPF(cpfBusca);
+		imprimirCliente(contaCliente);
+	}
+
+	private void buscaContaPorTitular(Banco banco) {
+		System.out.println("Digite o nome do titular:");
+		String nomeTitular = scanner.nextLine();
+		Conta contaCliente = banco.getClientePorNome(nomeTitular);
+		imprimirCliente(contaCliente);
+	}
+
+	public void opcoesCliente(Banco banco) {
+		int option = 0;
+		System.out.println("Opções de Cliente:");
+		System.out.println("1 - Listar Clientes");
+		System.out.println("2 - Buscar cliente por CPF");
+		System.out.println("3 - Buscar conta por titular");
+
+		try {
+			String op = scanner.nextLine();
+			option = Integer.parseInt(op);
+			System.out.println(op + " foi selecionada");
+		}catch (NumberFormatException e) {
+			option = 0;
+		}
+		switch (option) {
+			case 1: // Listar Clientes
+				banco.getContas().forEach(this::imprimirCliente);
+				break;
+			case 2: // Busca por CPF
+				buscaClientePorCPF(banco);
+				break;
+			case 3: // Busca por titular
+				buscaContaPorTitular(banco);
+				break;
+			default:
+				System.out.println("Opção inválida.");
+				break;
+		}
+	}
+
 	public void opcoesConta(Banco banco){
 		int option = 0; 
 		System.out.println("Opções de Conta:");
@@ -217,7 +261,7 @@ public class Menu {
 				opcoesConta(banco);
 				break;
 			case 2:
-				//opcoes do cliente
+				opcoesCliente(banco);
 				break;
 			case 3:
 				opcoesOperacoes(banco);
@@ -251,5 +295,19 @@ public class Menu {
 			}
 		}
 		return op;
+	}
+
+	public void imprimirCliente(Conta conta) {
+		if (conta != null) {
+			System.out.println("Detalhes do Cliente:");
+			System.out.println("Nome: " + conta.getTitular().getNome());
+			System.out.println("CPF: " + conta.getTitular().getCpf());
+			System.out.println("Endereço: " + conta.getTitular().getEndereco());
+			System.out.println("Número da Conta: " + conta.getNumeroConta());
+			System.out.println("Agência: " + conta.getAgencia());
+			System.out.println("===========================");
+		} else {
+			System.out.println("Conta não encontrada.");
+		}
 	}
 }
